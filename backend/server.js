@@ -10,13 +10,21 @@ const bookRoutes = require("./routes/booksRoute");
 const connectDB = require('./config/config');
 const Book = require("./models/book");
 const asyncHandler = require("express-async-handler");
-
+const cors = require('cors')
 // DOTENV $ connect with database
 connectDB()
 
 //
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.use(cors(
+    {
+        origin:["http://localhost:3000","https://ecommerce-booklelu.onrender.com/"]
+    }
+))
+
+
+
 app.use("/api",bookRoutes);
 app.use("/api/user",userRoutes);
 app.use("/api/order",orderRoutes);
