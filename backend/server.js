@@ -20,6 +20,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(cors(
     {
         origin:["https://ecommerce-booklelu.onrender.com/"],
+        methods:['GET','POST'],
     }
 ))
 
