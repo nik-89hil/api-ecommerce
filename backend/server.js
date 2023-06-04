@@ -10,19 +10,18 @@ const bookRoutes = require("./routes/booksRoute");
 const connectDB = require('./config/config');
 const Book = require("./models/book");
 const asyncHandler = require("express-async-handler");
-const cors = require('cors')
+const cors = require('cors');
+const path = require('path');
 // DOTENV $ connect with database
 connectDB()
 
 //
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use(cors(
-    {
-        origin:["https://ecommerce-booklelu.onrender.com/"],
-        methods:['GET','POST'],
-    }
-))
+
+app.use(express.static(path.join(__dirname,"../frontendwork/build")))
+// console.log(path.join(__dirname,"../frontendwork/build"))
+
 
 
 
@@ -72,6 +71,13 @@ app.post("/home",async(req,res)=>{
 
 
 app.use(errorHandler); 
+
+app.get("*",(req,res)=>{
+    res.sendFile(path.join(__dirname,"../frontendwork/build/index.html"));
+})
+
+
+
 app.listen(PORT,()=>{
     console.log("server started at port ",PORT)
 })
