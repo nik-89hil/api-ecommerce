@@ -16,18 +16,16 @@ const path = require('path');
 connectDB()
 
 //
+app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 // app.use(express.static(path.join(__dirname,"../frontendwork/build")))
 // console.log(path.join(__dirname,"../frontendwork/build"))
-const corsOptions = {
-    origin: 'https://ecommerce-booklelu.onrender.com/',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
 
 
-app.use("/api",cors(corsOptions),bookRoutes);
+
+app.use("/api",bookRoutes);
 app.use("/api/user",userRoutes);
 app.use("/api/order",orderRoutes);
 
