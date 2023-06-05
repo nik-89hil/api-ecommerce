@@ -19,8 +19,12 @@ connectDB()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
-app.use(express.static(path.join(__dirname,"../frontendwork/build")))
+// app.use(express.static(path.join(__dirname,"../frontendwork/build")))
 // console.log(path.join(__dirname,"../frontendwork/build"))
+app.use(cors({
+    origin: 'https://ecommerce-booklelu.onrender.com/',
+    method:['GET','POST'],
+  }));
 
 
 
@@ -28,10 +32,6 @@ app.use(express.static(path.join(__dirname,"../frontendwork/build")))
 app.use("/api",bookRoutes);
 app.use("/api/user",userRoutes);
 app.use("/api/order",orderRoutes);
-app.use(cors({
-    origin: 'https://ecommerce-booklelu.onrender.com/',
-    method:['GET','POST'],
-  }));
 
 
 
