@@ -28,6 +28,13 @@ app.use(express.static(path.join(__dirname,"../frontendwork/build")))
 app.use("/api",bookRoutes);
 app.use("/api/user",userRoutes);
 app.use("/api/order",orderRoutes);
+app.use(cors({
+    origin: 'https://ecommerce-booklelu.onrender.com/',
+    method:['GET','POST'],
+  }));
+
+
+
 app.get("/",(req,res)=>{
     res.send("<h1>Welcome to node server..</h1>")
 })
