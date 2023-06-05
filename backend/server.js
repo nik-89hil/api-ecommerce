@@ -21,15 +21,13 @@ app.use(express.urlencoded({extended:true}))
 
 // app.use(express.static(path.join(__dirname,"../frontendwork/build")))
 // console.log(path.join(__dirname,"../frontendwork/build"))
-app.use(cors({
+const corsOptions = {
     origin: 'https://ecommerce-booklelu.onrender.com/',
-    method:['GET','POST'],
-  }));
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 
-
-
-app.use("/api",bookRoutes);
+app.use("/api",cors(corsOptions),bookRoutes);
 app.use("/api/user",userRoutes);
 app.use("/api/order",orderRoutes);
 
